@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.param("model", (req, res, next) => {
   const modelName = req.params.model;
+  console.log("modelName", modelName);
   if (dataModules[modelName]) {
     req.model = dataModules[modelName];
     next();
@@ -48,6 +49,7 @@ async function handleUpdate(req, res) {
 async function handleDelete(req, res) {
   let id = req.params.id;
   let deletedRecord = await req.model.delete(id);
+  console.log(deletedRecord);
   res.status(200).json(deletedRecord);
 }
 
