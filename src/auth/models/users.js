@@ -1,5 +1,3 @@
-"use strict";
-
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -10,9 +8,9 @@ const userModel = (sequelize, DataTypes) => {
     username: { type: DataTypes.STRING, required: true, unique: true },
     password: { type: DataTypes.STRING, required: true },
     role: {
-      type: DataTypes.ENUM("user", "writer", "editor", "admin", "auth_admin"),
+      type: DataTypes.ENUM("teacher", "student"),
       required: true,
-      defaultValue: "user",
+      defaultValue: "teacher",
     },
     token: {
       type: DataTypes.VIRTUAL,
@@ -25,16 +23,8 @@ const userModel = (sequelize, DataTypes) => {
       type: DataTypes.VIRTUAL,
       get() {
         const acl = {
-          user: ["read"],
-          writer: ["read", "create"],
-          editor: ["read", "create", "update"],
-          admin: ["read", "create", "update", "delete"],
-          auth_admin: [
-            "read_user",
-            "create_user",
-            "update_user",
-            "delete_user",
-          ],
+          student: ["read_own", "create_own"],
+          teacher: ["read_all"],
         };
         return acl[this.role];
       },
