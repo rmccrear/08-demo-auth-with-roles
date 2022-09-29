@@ -1,4 +1,4 @@
 # Express server with auth, jwt tokens and roles
 
 Readme placeholder.
-![Whiteboard diagram](whiteboard-explaination.png)
+![Whiteboard diagram](docs/whiteboard-explaination.png)
