@@ -1,7 +1,8 @@
 "use strict";
 
 const userModel = require("./users.js");
-const { Sequelize, DataTypes } = require("sequelize");
+const { sequelize, DataTypes } = require("../../../db");
+/*types } = require("sequelize");
 
 const DATABASE_URL = process.env.DATABASE_URL || "sqlite:memory:";
 
@@ -11,3 +12,5 @@ module.exports = {
   db: sequelize,
   users: userModel(sequelize, DataTypes),
 };
+*/
+module.exports = { users: userModel(sequelize, DataTypes) };

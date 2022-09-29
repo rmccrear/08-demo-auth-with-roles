@@ -1,8 +1,13 @@
 "use strict";
 
-require('dotenv').config();
+require("dotenv").config();
 
-const { db } = require("./src/models");
+const { db } = require("./db");
+
+// initalize user models
+require("./src/auth/models");
+require("./src/models/index");
+
 const server = require("./src/server.js");
 
 db.sync().then(() => {
